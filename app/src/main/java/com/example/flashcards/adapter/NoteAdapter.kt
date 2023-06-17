@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.flashcards.data.Note
 import com.example.flashcards.databinding.NoteCardLayoutBinding
+import com.google.android.material.card.MaterialCardView
 
 class NoteAdapter(private val onItemClicked: (Note) -> Unit) :
     ListAdapter<Note, NoteAdapter.NoteViewHolder>(DiffCallback) {
@@ -17,7 +18,9 @@ class NoteAdapter(private val onItemClicked: (Note) -> Unit) :
         @SuppressLint("SimpleDateFormat")
         fun bind(note: Note) {
             binding.apply {
+                // first 20 characters
                 textTitle.text = note.title
+                // first 20 words
                 textContent.text = note.content
             }
         }
@@ -36,6 +39,10 @@ class NoteAdapter(private val onItemClicked: (Note) -> Unit) :
 
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         holder.bind(getItem(position))
+        // set a random color for each note
+        (holder.itemView as MaterialCardView).setCardBackgroundColor(
+            Note.colors.random()
+        )
     }
 
     companion object {

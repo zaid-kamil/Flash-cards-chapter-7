@@ -3,6 +3,7 @@ package com.example.flashcards.data
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
@@ -11,10 +12,16 @@ import kotlinx.coroutines.flow.Flow
 interface NoteDao {
     @Query("SELECT * FROM notes")
     fun getAllNotes(): Flow<List<Note>>
-    @Insert
-    fun insert(note: Note)
+
+    @Query("SELECT * FROM notes WHERE id = :id")
+    fun getNoteById(id: Long): Flow<Note>
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insert(note: Note)
+
     @Update
-    fun update(note: Note)
+    suspend fun update(note: Note)
+
     @Delete
-    fun delete(note: Note)
+    suspend fun delete(note: Note)
 }
