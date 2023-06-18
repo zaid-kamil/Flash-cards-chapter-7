@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.coroutineScope
 import androidx.navigation.fragment.findNavController
 import com.example.flashcards.MyApp
+import com.example.flashcards.R
 import com.example.flashcards.databinding.FragmentEditNoteBinding
 import com.example.flashcards.ui.NoteViewModel
 import com.example.flashcards.ui.NoteViewModelFactory
@@ -41,6 +43,7 @@ class EditNoteFragment : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.fabUpdate.setOnClickListener {
             updateNote()
+            Toast.makeText(requireContext(), R.string.note_updated, Toast.LENGTH_SHORT).show()
             findNavController().navigateUp()
         }
     }

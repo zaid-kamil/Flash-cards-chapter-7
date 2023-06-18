@@ -9,8 +9,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.coroutineScope
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.flashcards.MyApp
 import com.example.flashcards.R
 import com.example.flashcards.adapter.NoteAdapter
@@ -38,10 +36,9 @@ class HomeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val notesRecyclerView = binding.notesRecyclerView
-        notesRecyclerView.layoutManager = StaggeredGridLayoutManager(2, GridLayoutManager.VERTICAL)
+        val notesViewPager = binding.notesViewPager
         val adapter = NoteAdapter { viewNote(it) }
-        notesRecyclerView.adapter = adapter
+        notesViewPager.adapter = adapter
         lifecycle.coroutineScope.launch {
             viewModel.allNotes.collect() {
                 adapter.submitList(it)

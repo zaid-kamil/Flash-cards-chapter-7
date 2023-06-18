@@ -51,7 +51,6 @@ class ViewNoteFragment : BottomSheetDialogFragment() {
     }
 
     private fun showEditDialog() {
-        Toast.makeText(requireContext(), R.string.note_updated, Toast.LENGTH_SHORT).show()
         findNavController().navigate(R.id.action_viewNoteFragment_to_editNoteFragment)
     }
 
