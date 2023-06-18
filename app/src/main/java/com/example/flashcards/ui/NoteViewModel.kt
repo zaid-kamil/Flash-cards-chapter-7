@@ -40,6 +40,10 @@ class NoteViewModel(
         dao.delete(note)
     }
 
+    private fun getNewNote(noteTitle: String, noteContent: String): Note {
+        return Note(title = noteTitle, content = noteContent)
+    }
+
     fun isEntryValid(noteTitle: String, noteContent: String): Boolean {
         if (noteTitle.isBlank() || noteContent.isBlank()) {
             return false
@@ -52,9 +56,6 @@ class NoteViewModel(
         insertNote(note)
     }
 
-    private fun getNewNote(noteTitle: String, noteContent: String): Note {
-        return Note(title = noteTitle, content = noteContent)
-    }
 
     fun editNote(noteId: Long, noteTitle: String, noteContent: String) {
         val note = getUpdatedNote(

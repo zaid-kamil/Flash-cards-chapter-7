@@ -33,10 +33,6 @@
         android:id="@+id/editNoteFragment"
         android:name="com.example.flashcards.ui.home.EditNoteFragment"
         android:label="EditNoteFragment"
-        tools:layout="@layout/fragment_edit_note">
-        <action
-            android:id="@+id/action_editNoteFragment_to_navigation_home"
-            app:destination="@id/navigation_home" />
-    </dialog>
+        tools:layout="@layout/fragment_edit_note" />
 
 </navigation>
