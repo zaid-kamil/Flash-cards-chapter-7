@@ -20,7 +20,7 @@ class DashboardFragment : Fragment() {
     private var _binding: FragmentDashboardBinding? = null
     private val binding get() = _binding!!
     private val viewModel: NoteViewModel by activityViewModels {
-        NoteViewModelFactory((activity?.application as MyApp).database.noteDao())
+        NoteViewModelFactory((requireActivity().application as MyApp).database.noteDao())
     }
     lateinit var note: Note
 

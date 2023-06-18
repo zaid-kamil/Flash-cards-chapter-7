@@ -6,4 +6,5 @@
     <string name="note_deleted">Note deleted successfully</string>
     <string name="note_updated">Note updated successfully</string>
     <string name="empty_not_saved">Note not saved because it is empty</string>
+    <string name="emptyNoteMessage">Create your first Note, by clicking on the add note icon</string>
 </resources>

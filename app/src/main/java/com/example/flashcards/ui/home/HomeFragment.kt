@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.coroutineScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -44,6 +45,14 @@ class HomeFragment : Fragment() {
         lifecycle.coroutineScope.launch {
             viewModel.allNotes.collect() {
                 adapter.submitList(it)
+            }
+        }
+        // hide the EmptyMessage
+        viewModel.allNotes.asLiveData().observe(viewLifecycleOwner) {
+            if (it.isEmpty()) {
+                binding.tvEmptyMessage.visibility = View.VISIBLE
+            } else {
+                binding.tvEmptyMessage.visibility = View.GONE
             }
         }
     }
